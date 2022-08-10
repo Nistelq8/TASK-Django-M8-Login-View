@@ -20,6 +20,11 @@ class BookingsList(generics.ListAPIView):
     def get_queryset(self):
         return Booking.objects.filter(date__gte=datetime.date.today())
 
+class BookFlight(generics.CreateAPIView):
+    serializer_class = serializers.UpdateBookingSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user, flight_id=self.kwargs["flight_id"])
 
 class BookingDetails(generics.RetrieveAPIView):
     queryset = Booking.objects.all()
