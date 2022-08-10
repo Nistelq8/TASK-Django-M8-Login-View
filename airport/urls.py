@@ -36,4 +36,7 @@ urlpatterns = [
         views.CancelBooking.as_view(),
         name="cancel-booking",
     ),
+    path("register/",views.UserCreateView.as_view(), name='register'),
+    path("login/",views.UserLoginAPIView.as_view(), name='login'),
+    
 ]
